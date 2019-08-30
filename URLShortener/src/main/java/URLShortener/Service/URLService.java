@@ -1,4 +1,4 @@
-package URLShortener;
+package URLShortener.Service;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -19,12 +19,16 @@ import android.content.Context;
 public class URLService {
     private static final String HTTPS = "https://";
     private static final String HTTP = "http://";
+    private static final String hashAlgorithm = "MD5";
 
-
-    public boolean isValidURL(String url) {
+    public String cleanURL(String url){
         if (!(url.startsWith(HTTPS) || url.startsWith(HTTP))) {
             url = HTTPS + url;
         }
+        return url;
+    }
+
+    public boolean isValidURL(String url) {
         try {
             (new java.net.URL(url)).openStream().close();
             return true;
@@ -34,6 +38,8 @@ public class URLService {
     }
 
 
+
+//    Taken from https://howtodoinjava.com/security/how-to-generate-secure-password-hash-md5-sha-pbkdf2-bcrypt-examples/
 
     /**
      * Generate MD5 Hash of input URL
@@ -45,12 +51,12 @@ public class URLService {
         String shortened = null;
         int maxURLlength = 6;
         try{
-            MessageDigest md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance(hashAlgorithm);
             md.update(longURl.getBytes());
 
             byte[] bytes = md.digest();
             StringBuilder builder = new StringBuilder();
-            for(int i = 0; i < maxURLlength; i++){
+            for(int i = 0; i < maxURLlength - 3; i++){      // maxLength - 3 is to account for initial 3 letters from first append
 //                & 0xFF returns bytes[i] as value between 0-255
 //                + 0x100 adds 256 to result - ensure value is 3 digits
 //                radix of 16 - convert int to string using hexadecimal
