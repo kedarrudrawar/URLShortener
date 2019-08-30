@@ -1,6 +1,6 @@
 package URLShortener;
 
-import URLShortener.Entity.URL;
+import URLShortener.Entity.Url;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -20,8 +20,8 @@ public class Application implements CommandLineRunner {
     public void run(String... args) throws Exception {
         urlRepository.deleteAll();
 
-        urlRepository.save(new URL("urlShort", "urlLONG"));
-        for(URL url : urlRepository.findAll()){
+        urlRepository.save(new Url("urlShort", "urlLONG"));
+        for(Url url : urlRepository.findAll()){
             System.out.println(url.toString());
         }
     }

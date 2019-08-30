@@ -1,34 +1,34 @@
 package URLShortener.Entity;
 import org.springframework.data.annotation.Id;
 
-public class URL {
+public class Url {
     @Id
     private String shortenedURL;
     private String originalURl;
     private String creationDate;
     private int userID;
 
-    public URL(){
+    public Url(){
         this.shortenedURL = "";
         this.originalURl = "";
         this.creationDate = "";
         this.userID = 0;
     }
 
-    public URL(String shortenedURL, String originalURl){
+    public Url(String shortenedURL, String originalURl){
         this.shortenedURL = shortenedURL;
         this.originalURl = originalURl;
         this.creationDate = "";
         this.userID = 0;
     }
 
-    public URL(String shortenedURL, String originalURl, String creationDate) {
+    public Url(String shortenedURL, String originalURl, String creationDate) {
         this.shortenedURL = shortenedURL;
         this.originalURl = originalURl;
         this.creationDate = creationDate;
     }
 
-    public URL(String shortenedURL, String originalURl, String creationDate, int userID) {
+    public Url(String shortenedURL, String originalURl, String creationDate, int userID) {
         this.shortenedURL = shortenedURL;
         this.originalURl = originalURl;
         this.creationDate = creationDate;

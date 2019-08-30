@@ -1,8 +1,9 @@
 package URLShortener.Controller;
 
-import URLShortener.Entity.URL;
+import URLShortener.Entity.Url;
 import URLShortener.Service.URLService;
 import URLShortener.Dao.URLDao;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +33,9 @@ public class URLController {
 
         String hashedURL = urlService.shortenURL(cleanedURL);
 
-        String today = Calendar.getInstance().toString();
-        URL url = new URL(API_ROOT + hashedURL, cleanedURL, today, 0);
+        String dt = new DateTime().toString("dd:MM:yy");
+
+        Url url = new Url(API_ROOT + hashedURL, cleanedURL, dt, 0);
 
         urlDao.saveURL(url);
 
