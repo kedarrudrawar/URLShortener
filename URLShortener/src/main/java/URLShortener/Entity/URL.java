@@ -8,6 +8,13 @@ public class URL {
     private String creationDate;
     private int userID;
 
+    public URL(){
+        this.shortenedURL = "";
+        this.originalURl = "";
+        this.creationDate = "";
+        this.userID = 0;
+    }
+
     public URL(String shortenedURL, String originalURl){
         this.shortenedURL = shortenedURL;
         this.originalURl = originalURl;
